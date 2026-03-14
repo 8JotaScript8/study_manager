@@ -14,6 +14,15 @@ class TaskForm(forms.ModelForm):
         model = Task
         fields = ['title', 'description', 'due_date', 'subject']
 
+        widgets = {
+            'due_date': forms.DateInput(
+                attrs={
+                    'type': 'date',
+                    'class': 'form-control'
+                }
+            )
+        }
+
     def __init__(self, *args, **kwargs):
         user = kwargs.pop('user', None)
         super().__init__(*args, **kwargs)
