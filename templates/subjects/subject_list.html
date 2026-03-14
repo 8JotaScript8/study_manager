@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2>Subjects</h2>
+
+<a href="{% url 'subjects:subject_create' %}">
+    <button class="btn btn-dark w-100 rounded-pill">
+        Criar Subject
+    </button>
+</a>
+
+<hr>
+
+<ul>
+    {% for subject in subjects %}
+        <li>
+            {{ subject.name }}
+        </li>
+    {% empty %}
+        <li>Nenhum subject criado.</li>
+    {% endfor %}
+</ul>
+
+{% endblock %}

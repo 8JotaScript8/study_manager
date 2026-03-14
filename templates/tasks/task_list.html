@@ -1,0 +1,140 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+
+<h2 class="mb-4">Lista de Tasks</h2>
+
+<div class="d-flex justify-content-between mb-3">
+
+<a href="{% url 'create_task' %}" class="btn btn-dark rounded-pill">
++ Nova Task
+</a>
+
+<div>
+
+<a href="{% url 'task_list' %}" class="btn btn-outline-secondary btn-sm">
+Todas
+</a>
+
+<a href="?status=pending" class="btn btn-outline-warning btn-sm">
+Pendentes
+</a>
+
+<a href="?status=completed" class="btn btn-outline-success btn-sm">
+Concluídas
+</a>
+
+<a href="?status=late" class="btn btn-outline-danger btn-sm">
+Atrasadas
+</a>
+
+</div>
+
+</div>
+
+
+{% if atrasadas %}
+<div class="alert alert-danger">
+Você tem {{ atrasadas|length }} task(s) atrasada(s)!
+</div>
+{% endif %}
+
+
+<div class="list-group">
+
+{% for task in tasks %}
+
+<div class="list-group-item d-flex justify-content-between align-items-center">
+
+<div>
+
+{% if task.completed %}
+<strong><s>{{ task.title }}</s></strong>
+{% else %}
+<strong>{{ task.title }}</strong>
+{% endif %}
+
+<br>
+
+<small class="text-muted">
+Subject: {{ task.subject }}
+</small>
+
+<br>
+
+{% if task.due_date %}
+
+{% if task.is_late %}
+
+<span class="badge bg-danger">
+{{ task.due_date|date:"d/m/Y" }} • Atrasada
+</span>
+
+{% else %}
+
+<span class="badge bg-secondary">
+{{ task.due_date|date:"d/m/Y" }}
+</span>
+
+{% endif %}
+
+{% else %}
+
+<span class="badge bg-light text-dark">
+Sem prazo
+</span>
+
+{% endif %}
+
+</div>
+
+
+<div class="d-flex gap-2">
+
+<a href="{% url 'edit_task' task.pk %}" class="btn btn-sm btn-outline-secondary">
+Editar
+</a>
+
+<a href="{% url 'delete_task' task.pk %}" class="btn btn-sm btn-outline-danger">
+Excluir
+</a>
+
+{% if task.completed %}
+
+<form action="{% url 'uncomplete_task' task.pk %}" method="POST">
+{% csrf_token %}
+<button class="btn btn-sm btn-outline-warning">
+Desmarcar
+</button>
+</form>
+
+{% else %}
+
+<form action="{% url 'complete_task' task.pk %}" method="POST">
+{% csrf_token %}
+<button class="btn btn-sm btn-outline-success">
+Concluir
+</button>
+</form>
+
+{% endif %}
+
+</div>
+
+</div>
+
+{% empty %}
+
+<div class="alert alert-info">
+Nenhuma task encontrada.
+</div>
+
+{% endfor %}
+
+</div>
+
+</div>
+
+{% endblock %}
