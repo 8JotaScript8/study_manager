@@ -57,7 +57,6 @@ class SignUpForm(UserCreationForm):
             'placeholder': 'Confirm password'
         })
 
-        # remove help_text feio do django
         for field in self.fields.values():
             field.help_text = None
         
