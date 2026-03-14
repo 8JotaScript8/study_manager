@@ -201,7 +201,7 @@ Caso queira rodar o projeto localmente:
 
 Clone o repositório
 
-git clone https://github.com/8JotaScript8/study-manager.git
+git clone https://github.com/8JotaScript8/study_manager
 
 Entre na pasta do projeto
 
