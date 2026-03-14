@@ -12,7 +12,7 @@ O sistema permite criar **matérias**, adicionar **tarefas relacionadas**, acomp
 
 A aplicação está disponível online:
 
-🔗 https://study-manager.onrender.com
+🔗 [![Live Demo](https://img.shields.io/badge/Live-Demo-green?style=for-the-badge)](https://study-manager-p5pj.onrender.com/)
 
 Você pode criar uma conta e testar todas as funcionalidades do sistema diretamente no navegador.
 
