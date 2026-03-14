@@ -16,6 +16,8 @@ A aplicação está disponível online:
 
 Você pode criar uma conta e testar todas as funcionalidades do sistema diretamente no navegador.
 
+⚠️ O primeiro acesso pode demorar alguns segundos pois o Render coloca a aplicação em modo sleep quando não está em uso.
+
 ---
 
 # 📸 Screenshots
