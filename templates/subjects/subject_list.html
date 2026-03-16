@@ -2,24 +2,63 @@
 
 {% block content %}
 
-<h2>Subjects</h2>
+<div class="container mt-4">
 
-<a href="{% url 'subjects:subject_create' %}">
-    <button class="btn btn-dark w-100 rounded-pill">
-        Criar Subject
-    </button>
+<div class="d-flex justify-content-between align-items-center mb-4">
+
+<h2 class="fw-bold">Subjects</h2>
+
+<a href="{% url 'subjects:subject_create' %}" class="btn btn-dark rounded-pill">
++ Novo Subject
 </a>
 
-<hr>
+</div>
 
-<ul>
-    {% for subject in subjects %}
-        <li>
-            {{ subject.name }}
-        </li>
-    {% empty %}
-        <li>Nenhum subject criado.</li>
-    {% endfor %}
-</ul>
+<div class="row">
+
+{% for subject in subjects %}
+
+<div class="col-md-6 col-lg-4 mb-4">
+
+<div class="card shadow-sm rounded-4 h-100">
+
+<div class="card-body">
+
+<h5 class="card-title fw-semibold">
+{{ subject.name }}
+</h5>
+
+
+</div>
+
+<div class="card-footer bg-white border-0 d-flex justify-content-end gap-2">
+
+<a href="{% url 'subjects:subject_delete' subject.id %}" class="btn btn-sm btn-outline-danger rounded-pill">
+Excluir
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+{% empty %}
+
+<div class="col-12">
+
+<div class="alert alert-light text-center shadow-sm">
+
+Nenhum subject criado ainda.
+
+</div>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+</div>
 
 {% endblock %}
