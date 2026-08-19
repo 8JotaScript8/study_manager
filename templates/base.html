@@ -9,45 +9,214 @@
     
     <style>
 
-        body{
-            font-family: Arial, sans-serif;
-            margin:40px;
+        :root {
+            --primary: #1a1a2e;
+            --primary-light: #16213e;
+            --accent: #0f3460;
+            --accent-light: #533483;
+            --success: #2ecc71;
+            --warning: #f39c12;
+            --danger: #e74c3c;
+            --bg: #f0f2f5;
+            --card-bg: #ffffff;
+            --text: #2d3436;
+            --text-muted: #636e72;
         }
 
-        nav{
-            margin-bottom:20px;
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
         }
 
-        .dashboard{
-            display:grid;
-            grid-template-columns: repeat(2, 200px);
-            gap:20px;
+        nav {
+            margin-bottom: 0;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
         }
 
-        .card{
-            border:1px solid #ddd;
-            padding:20px;
-            text-align:center;
-            border-radius:10px;
-            background:#f9f9f9;
+        .navbar {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%) !important;
+            padding: 0.8rem 0;
         }
 
-        .card p{
-            font-size:28px;
-            font-weight:bold;
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.3rem;
+            letter-spacing: 0.5px;
         }
 
-        .progress-bar{
-            width:300px;
-            height:20px;
-            background:#eee;
-            border-radius:10px;
+        .nav-link {
+            font-weight: 500;
+            transition: color 0.2s;
+            padding: 0.5rem 1rem !important;
+            border-radius: 6px;
         }
 
-        .progress{
-            height:100%;
-            background:#4CAF50;
-            border-radius:10px;
+        .nav-link:hover {
+            background: rgba(255,255,255,0.1);
+        }
+
+        .dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .dashboard .card {
+            border: none;
+            padding: 25px 20px;
+            text-align: center;
+            border-radius: 16px;
+            background: var(--card-bg);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }.dashboard .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+        }
+
+        .dashboard .card.total {
+            border-left: 4px solid var(--accent);
+        }
+
+        .dashboard .card.completed {
+            border-left: 4px solid var(--success);
+        }
+
+        .dashboard .card.pending {
+            border-left: 4px solid var(--warning);
+        }
+
+        .dashboard .card.late {
+            border-left: 4px solid var(--danger);
+        }
+
+        .dashboard .card h3 {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        .dashboard .card p {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 0;
+        }
+
+        .progress-bar {
+            width: 100%;
+            max-width: 500px;
+            height: 14px;
+            background: #e9ecef;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress {
+            height: 100%;
+            background: linear-gradient(90deg, var(--success), #27ae60);
+            border-radius: 10px;
+            transition: width 0.5s ease;
+        }
+
+        .container {
+            padding-top: 2rem;
+            padding-bottom: 2rem;
+        }
+
+        h1, h2, h3, h4, h5 {
+            color: var(--primary);
+        }
+
+        .btn-dark {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            border: none;
+            font-weight: 500;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn-dark:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 15px rgba(15,52,96,0.3);
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+        }
+
+        .btn-outline-dark {
+            border-color: var(--primary);
+            color: var(--primary);
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .btn-outline-dark:hover {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: #fff;
+        }
+
+        .card {
+            border: none;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+        }
+
+        .list-group-item {
+            border: none;
+            border-radius: 12px !important;
+            margin-bottom: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+            padding: 16px 20px;
+            transition: transform 0.2s;
+        }
+
+        .list-group-item:hover {
+            transform: translateX(4px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        .badge {
+            font-weight: 500;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.78rem;
+        }
+
+        .form-control, .form-select {
+            border-radius: 10px;
+            border: 1.5px solid #dee2e6;
+            padding: 10px 14px;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .form-control:focus, .form-select:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(15,52,96,0.1);
+        }
+
+        .form-label {
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 0.9rem;
+        }
+
+        .rounded-4 {
+            border-radius: 16px !important;
+        }
+
+        hr {
+            border-color: #e9ecef;
         }
 
     </style>
@@ -124,11 +293,7 @@
   </div>
 </nav>
 
-<div class="container mt-4">
-  
-
-<h1>Study Manager</h1>
-<hr>
+<div class="container">
 
 {% block content %}
 {% endblock %}
